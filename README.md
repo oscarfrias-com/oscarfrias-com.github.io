@@ -1,2 +1,2 @@
-# oscarfrias-com.github.io
-Personal site for Oscar Frias
+# oscarfrias.com
+Personal site for Oscar Frias: Engineer, roboticist, (brand new) HAM radio enthusiast.
