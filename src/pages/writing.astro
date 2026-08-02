@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const allEntries = await getCollection('writing');
+const entries = allEntries.filter(({ data }) => !data.draft).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const formatDate = (date: Date) => new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(date);
+---
+
+<BaseLayout title="Writing" description="Writing by Oscar Frias about complex machines, robotics hardware, validation, and technical leadership.">
+  <h1>Building machines in the real world.</h1>
+  <p class="intro">Notes on architecture, mechanisms, robotics hardware, technical leadership, validation, failure, manufacturing, and the practical work of turning uncertain ideas into dependable systems.</p>
+  {entries.length > 0 ? (
+    <ol class="writing-list">
+      {entries.map(({ data }) => (
+        <li><time datetime={data.date.toISOString().slice(0, 10)}>{formatDate(data.date)}</time><a href={`/writing/${data.slug}/`}>{data.title}</a></li>
+      ))}
+    </ol>
+  ) : (
+    <aside class="archive-note">
+      <strong>Archive review in progress.</strong>
+      <p>I’m reviewing {allEntries.length} pieces written between 2012 and 2018 and will restore selected work here.</p>
+    </aside>
+  )}
+</BaseLayout>
+
+<style>
+  .writing-list { margin: 5rem 0 0; padding: 0; list-style: none; border-top: 2px solid var(--ink); }
+  .writing-list li { padding: 1.5rem 0; display: grid; grid-template-columns: 11rem 1fr; gap: 1.5rem; align-items: baseline; border-bottom: 1px solid var(--rule); }
+  time { color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; }
+  .writing-list a { color: var(--ink); font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif; font-size: clamp(1.4rem, 3vw, 2.4rem); font-weight: 750; letter-spacing: -0.035em; line-height: 1; text-decoration: none; text-transform: uppercase; }
+  .writing-list a:hover { color: var(--signal); }
+  .archive-note { max-width: 48rem; margin-top: 5rem; padding: 1.5rem 0; display: grid; grid-template-columns: 12rem 1fr; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
+  .archive-note strong { color: var(--signal); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .archive-note p { margin: 0; color: #4d565d; font-family: Georgia, "Times New Roman", serif; font-size: 1.2rem; line-height: 1.6; }
+  @media (max-width: 36rem) { .writing-list li { grid-template-columns: 1fr; gap: 0.5rem; } }
+</style>

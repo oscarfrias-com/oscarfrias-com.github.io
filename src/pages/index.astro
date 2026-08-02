@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About" description="Oscar Frias is a mechanical engineer and technical lead who develops complex machines and robotic systems.">
+  <h1>I build complex machines.</h1>
+  <p class="intro">
+    I’m a mechanical engineer and technical lead working across robotics, electromechanical systems,
+    manufacturing, and product development—from early architecture through validation and deployment.
+  </p>
+  <section class="principles" aria-label="How I work">
+    <article><span>01</span><h2>Technical leadership</h2><p>I turn ambiguous programs into architectures, decisions, plans, and validated systems. I build alignment across disciplines while keeping technical ownership and engineering risk visible.</p></article>
+    <article><span>02</span><h2>Machine development</h2><p>I work across mechanisms, structures, actuators, sensors, manufacturing, reliability, and system integration. I am most effective where analysis, prototypes, testing, and practical judgment meet.</p></article>
+    <article><span>03</span><h2>Engineering in context</h2><p>A machine succeeds as part of a larger system. I account for the people who build, operate, service, and depend on it—along with production constraints, business goals, and real-world failure modes.</p></article>
+  </section>
+  <nav class="next-links" aria-label="Explore the site">
+    <a href="/projects/">Explore my work <span aria-hidden="true">→</span></a>
+    <a href="/resume/">View experience <span aria-hidden="true">→</span></a>
+    <a href="/writing/">Browse writing <span aria-hidden="true">→</span></a>
+  </nav>
+</BaseLayout>
+
+<style>
+  .principles {
+    margin-top: clamp(5rem, 10vw, 9rem);
+    border-top: 2px solid var(--ink);
+  }
+
+  .principles article {
+    min-height: 11rem;
+    padding: 1.5rem 0;
+    display: grid;
+    grid-template-columns: 4rem minmax(12rem, 0.65fr) 1fr;
+    gap: 2rem;
+    align-items: start;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .principles span {
+    color: var(--signal);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.72rem;
+    font-weight: 750;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 3.1rem);
+    font-weight: 800;
+    letter-spacing: -0.055em;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+
+  .principles p {
+    max-width: 34rem;
+    margin: 0;
+    color: #4d565d;
+    line-height: 1.7;
+  }
+
+  .next-links {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .next-links a {
+    padding: 1.25rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    color: var(--ink);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .next-links a + a { border-left: 1px solid var(--rule); }
+  .next-links a:hover { color: var(--paper); background: var(--signal); }
+
+  @media (max-width: 44rem) {
+    .principles article { grid-template-columns: 2.5rem 1fr; gap: 1rem; }
+    .principles p { grid-column: 2; }
+    .next-links { grid-template-columns: 1fr; }
+    .next-links a + a { border-top: 1px solid var(--rule); border-left: 0; }
+  }
+</style>

@@ -1,0 +1,99 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+}
+
+const { title, description, date } = Astro.props;
+const formattedDate = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+}).format(date);
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="entry">
+    <a class="back-link" href="/writing/">← All writing</a>
+    <time datetime={date.toISOString().slice(0, 10)}>{formattedDate}</time>
+    <h1 class="entry-title">{title}</h1>
+    <div class="prose"><slot /></div>
+  </article>
+</BaseLayout>
+
+<style>
+  .back-link {
+    display: block;
+    width: max-content;
+    margin-bottom: 3rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--signal);
+    color: var(--ink);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  time {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--signal);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .entry-title {
+    max-width: 18ch;
+    margin-bottom: 5rem;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+  }
+
+  .prose {
+    max-width: 47rem;
+    margin-left: clamp(0rem, 8vw, 7rem);
+    padding-top: 2rem;
+    border-top: 2px solid var(--ink);
+  }
+
+  .prose :global(h2),
+  .prose :global(h3) {
+    margin: 3.5rem 0 1rem;
+    font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+
+  .prose :global(h2) { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+  .prose :global(h3) { font-size: 1.45rem; }
+
+  .prose :global(p),
+  .prose :global(li) {
+    color: #3e484f;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .prose :global(a) {
+    color: var(--ink);
+    text-decoration-color: var(--signal);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
+  }
+
+  .prose :global(img) {
+    max-width: 100%;
+    height: auto;
+  }
+</style>

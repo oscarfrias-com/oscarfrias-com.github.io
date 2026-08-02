@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projectDetails = {
+  unilife: { order: 1, summary: 'Mechanical design and human-factors engineering for reconstitution devices and autoinjectors.', discipline: 'Medical devices' },
+  astrobotic: { order: 2, summary: 'Manufacturing leadership for Polaris, a lightweight lunar excavation rover.', discipline: 'Space robotics' },
+  highground: { order: 3, summary: 'User research, design, manufacturing, and launch of wearable gear for urban athletes.', discipline: 'Wearable products' },
+  international: { order: 4, summary: 'A compact long-haul truck cab designed around the working and resting needs of drivers.', discipline: 'Transportation' },
+} as const;
+
+const projects = (await getCollection('projects'))
+  .map((project) => ({ ...project, details: projectDetails[project.id as keyof typeof projectDetails] }))
+  .sort((a, b) => a.details.order - b.details.order);
+
+const currentWork = [
+  {
+    organization: 'RAI Institute',
+    role: 'Robotic systems',
+    summary: 'Leading multidisciplinary engineering for complex robotic systems, with an emphasis on architecture, integration, technical risk, and dependable hardware.',
+  },
+  {
+    organization: 'Formlabs',
+    role: 'SLS & post-processing systems',
+    summary: 'Led technical development across SLS 3D-printing and post-processing systems, including technical-champion responsibility for Fuse 1+ and Fuse Blast.',
+  },
+];
+---
+
+<BaseLayout title="Work" description="Technical leadership and selected engineering work by Oscar Frias.">
+  <h1>Complex machines, built to work.</h1>
+  <p class="intro">My work has progressed from hands-on product development and fabrication to technical leadership for multidisciplinary machines and robotic systems.</p>
+
+  <section class="work-section">
+    <header class="section-header"><span>Current practice</span><p>Recent roles</p></header>
+    <div class="current-list">
+      {currentWork.map(({ organization, role, summary }, index) => (
+        <article class="work-row">
+          <span class="project-number">0{index + 1}</span>
+          <div><span class="discipline">{role}</span><h2>{organization}</h2></div>
+          <p>{summary}</p>
+          <span class="row-end" aria-hidden="true"></span>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="work-section legacy-work">
+    <header class="section-header"><span>Selected earlier work</span><p>The foundation</p></header>
+    <p class="section-intro">Earlier programs developed the user-centered judgment, manufacturing knowledge, and hands-on engineering practice that now inform how I lead complex technical work.</p>
+    <div class="project-list">
+    {projects.map(({ id, data, details }, index) => (
+      <a class="project-card work-row" href={`/projects/${id}/`}>
+        <span class="project-number">0{index + 1}</span>
+        <div><span class="discipline">{details.discipline}</span><h2>{data.title}</h2></div>
+        <p>{details.summary}</p><span class="arrow" aria-hidden="true">↗</span>
+      </a>
+    ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .work-section { margin-top: clamp(5rem, 10vw, 9rem); }
+  .section-header { padding: 1rem 0; display: flex; align-items: baseline; justify-content: space-between; gap: 2rem; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .section-header span { color: var(--signal); font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif; font-size: clamp(1.35rem, 2.6vw, 2.1rem); font-weight: 850; letter-spacing: -0.035em; }
+  .section-header p { margin: 0; color: var(--muted); }
+  .section-intro { max-width: 44rem; margin: 2rem 0 3rem clamp(0rem, 8vw, 7rem); color: #4d565d; font-family: Georgia, "Times New Roman", serif; font-size: 1.15rem; line-height: 1.65; }
+  .project-list { border-bottom: 2px solid var(--ink); }
+  .work-row { min-height: 10rem; padding: 1.5rem 0; display: grid; grid-template-columns: 4rem minmax(14rem, 0.8fr) 1fr 2rem; gap: 2rem; align-items: center; border-bottom: 1px solid var(--rule); color: var(--ink); }
+  .work-row > div { min-width: 0; }
+  .project-card:hover { color: var(--signal); }
+  .project-number, .discipline { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .project-number { align-self: start; color: var(--signal); }
+  .discipline { color: var(--muted); }
+  h2 { margin: 0.5rem 0 0; font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif; font-size: clamp(2rem, 3.6vw, 3.7rem); font-weight: 850; letter-spacing: -0.07em; line-height: 0.9; text-transform: uppercase; }
+  .project-card { text-decoration: none; }
+  .project-card p, .work-row p { max-width: 32rem; margin: 0; color: #4d565d; line-height: 1.65; }
+  .arrow { font-size: 1.5rem; }
+  @media (max-width: 46rem) { .work-row { grid-template-columns: 2rem 1fr 2rem; gap: 1rem; } .work-row p { grid-column: 2 / -1; } }
+</style>

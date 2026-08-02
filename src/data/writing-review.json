@@ -1,0 +1,23 @@
+[
+  { "slug": "way-home", "title": "Way home", "date": "2012-08-15", "theme": "personal", "status": "pending" },
+  { "slug": "back-from-scratch", "title": "Back from Scratch", "date": "2012-11-27", "theme": "personal", "status": "pending" },
+  { "slug": "romibo", "title": "Romibo", "date": "2012-11-27", "theme": "robotics", "status": "pending", "media": true },
+  { "slug": "machining-a-team", "title": "Machining a team", "date": "2012-12-24", "theme": "teams", "status": "pending" },
+  { "slug": "composite-lessons", "title": "Composite lessons", "date": "2013-01-12", "theme": "engineering", "status": "pending", "media": true },
+  { "slug": "lessons-learned-lesson-0", "title": "Lessons Learned | Lesson #0", "date": "2013-06-19", "theme": "professional", "status": "pending" },
+  { "slug": "communication-is-first-lessons-learned", "title": "Communication is First", "date": "2013-07-24", "theme": "professional", "status": "pending" },
+  { "slug": "the-power-of-a-bad-review", "title": "The Power of a Bad Review", "date": "2014-09-25", "theme": "personal", "status": "pending" },
+  { "slug": "first-try-with-my-diy-weather-station-kit-from-anonymous-co", "title": "First Try with My DIY Weather Station Kit", "date": "2015-11-09", "theme": "making", "status": "pending", "media": true },
+  { "slug": "truss-builder", "title": "Truss Builder", "date": "2015-11-09", "theme": "engineering", "status": "pending", "media": true },
+  { "slug": "weather-here-we-go", "title": "Weather, Here We Go!", "date": "2015-11-11", "theme": "making", "status": "pending", "media": true },
+  { "slug": "work-life-balance-mark-watney-style", "title": "Work-life Balance (Mark Watney Style)", "date": "2015-12-09", "theme": "personal", "status": "pending", "media": true },
+  { "slug": "woozy", "title": "Woozy", "date": "2015-12-15", "theme": "personal", "status": "pending" },
+  { "slug": "how-to-get-an-engineering-job-at-a-design-firm", "title": "How to Get an Engineering Job at a Design Firm", "date": "2016-05-23", "theme": "career", "status": "pending" },
+  { "slug": "forget-about-facebook-its-you-whos-leaking-your-info", "title": "Forget About Facebook, It’s You Who’s Leaking Your Info", "date": "2016-09-08", "theme": "privacy", "status": "pending" },
+  { "slug": "the-ultimate-stepper-motor-selection-guide", "title": "The Ultimate Stepper Motor Selection Guide", "date": "2018-02-07", "theme": "engineering", "status": "pending", "media": true, "series": "stepper-motor-selection" },
+  { "slug": "stepper-motor-selection-guide-1-specs", "title": "Stepper Motor Selection Guide: Define Requirements", "date": "2018-02-22", "theme": "engineering", "status": "pending", "series": "stepper-motor-selection" },
+  { "slug": "the-usmsg-part-2-define-your-pull-out-torque", "title": "The USMSG Part 2: Define Your Pull-out Torque", "date": "2018-02-23", "theme": "engineering", "status": "pending", "media": true, "series": "stepper-motor-selection" },
+  { "slug": "the-usmsg-part-3-determine-the-accuracy", "title": "The USMSG Part 3: Determine the Accuracy", "date": "2018-02-24", "theme": "engineering", "status": "pending", "series": "stepper-motor-selection" },
+  { "slug": "the-usmsg-part-3-evaluate-the-torque-curves", "title": "The USMSG Part 4: Evaluate the Torque Curves", "date": "2018-02-24", "theme": "engineering", "status": "pending", "media": true, "series": "stepper-motor-selection" },
+  { "slug": "why-go-to-trade-shows", "title": "Why Go to Trade Shows?", "date": "2018-11-11", "theme": "career", "status": "pending" }
+]
