@@ -2,9 +2,10 @@
 interface Props {
   title: string;
   description: string;
+  showEyebrow?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, showEyebrow = true } = Astro.props;
 const currentPath = Astro.url.pathname;
 const pageTitle = title === 'About' ? 'Oscar Frias' : `${title} | Oscar Frias`;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
@@ -58,7 +59,7 @@ const isCurrent = (href: string) => href === '/' ? currentPath === href : curren
     </header>
 
     <main>
-      <p class="eyebrow">{title}</p>
+      {showEyebrow && <p class="eyebrow">{title}</p>}
       <slot />
     </main>
 
@@ -198,10 +199,10 @@ const isCurrent = (href: string) => href === '/' ? currentPath === href : curren
   }
 
   h1 {
-    max-width: 15ch;
+    max-width: 20ch;
     margin: 0;
     font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
-    font-size: clamp(3.2rem, 8.5vw, 7.6rem);
+    font-size: clamp(2.8rem, 7vw, 6.5rem);
     font-stretch: condensed;
     font-weight: 850;
     letter-spacing: -0.075em;
@@ -210,7 +211,7 @@ const isCurrent = (href: string) => href === '/' ? currentPath === href : curren
   }
 
   .intro {
-    max-width: 46rem;
+    max-width: 65rem;
     margin: 2.5rem 0 0;
     color: #3e484f;
     font-family: Georgia, "Times New Roman", serif;
